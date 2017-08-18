@@ -1,0 +1,21 @@
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1><%= @post.title %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p><%= @post.body %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+          <labels>Actions:</labels>
+          <%= link_to 'Edit', edit_post_path(@post) %> |
+          <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <% if admin_signed_in? %>
+              <ul class="nav navbar-nav">
+                <li><%= link_to "Home", root_path %></li>
+                <li><%= link_to "New Post", new_post_path %></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><%= current_admin.email %></a></li>
+                <li><%= link_to "Log-out", destroy_admin_session_path, method: :delete %></li>
+              </ul>
+            <% else %>
+              <ul class="nav navbar-nav">
+                <li><%= link_to "Home", root_path %></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to "Log-in", new_admin_session_path %></li>
+              </ul>
+            <% end %>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+      <header class="modern-header">
+      <h1>Blog</h1>
+      <h3>Frase de efeito.</h3>
+      </header>
+
+      <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+      <%end%>
+      <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+      <%end%>
+      <%= yield %>
+      <footer>
+        <div class="row">
+          <div class="col-md-12">
+          <div class="text-center">
+            
+          Esse blog foi Feito com Rails
+          </div>
+          </div>
+          </div>
+          </footer>
+    </div>
+  </body>
+</html>
