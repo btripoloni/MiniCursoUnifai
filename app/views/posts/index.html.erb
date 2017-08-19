@@ -1,26 +1,35 @@
-
-<% @posts.each do |post| %>
-<div>
+<% unless @posts.empty? %>
+  <% @posts.each do |post| %>
+  <div>
+    <div class="row">
+      <div class="col-md-12">
+        <h1><%= link_to post.title, post %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p><%= simple_format(post.body) %></p>
+      </div>
+    </div>
+    <% if admin_signed_in? %>
+    <div class="row">
+      <div class="col-md-12">
+          <div class="pull-right">
+            <labels>Actions:</labels>
+            <%= link_to 'Show', post %> |
+            <%= link_to 'Edit', edit_post_path(post) %> |
+            <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <hr>
+  <% end %>
+<% else %>
   <div class="row">
     <div class="col-md-12">
-      <h1><%= link_to post.title, post %></h1>
+      <h1>Não existe postts no momento!</h1>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <p><%= post.body %></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-        <div class="pull-right">
-          <labels>Actions:</labels>
-          <%= link_to 'Show', post %> |
-          <%= link_to 'Edit', edit_post_path(post) %> |
-          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </div>
-    </div>
-  </div>
-</div>
-<hr>
 <% end %>
